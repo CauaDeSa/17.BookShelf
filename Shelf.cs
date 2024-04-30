@@ -1,4 +1,4 @@
-﻿namespace Ex1.BookShelff
+﻿namespace Ex17.BookShelff
 {
     internal class Shelf
     {
@@ -7,10 +7,13 @@
 
         public Shelf() { }
 
-        public int GetStoredQuantity()
-        {
-            return bookCount;
-        }
+        public int GetStoredQuantity() { return bookCount; }
+
+        public bool IsFull() { return bookCount == 9; }
+
+        public bool IsEmpty() { return bookCount == -1; }
+
+        private bool HasIndex(int index) { return bookCount >= index && index > -1; }
 
         public bool AddBook(Book b)
         {
@@ -23,9 +26,24 @@
             return false;
         }
 
+        public Book GetBookByIndex(int position) {
+            if (HasIndex(position))
+                return books[position];
+            return null;
+        }
+
+        public bool UpdateBook(int position, Book updated) {
+            if (HasIndex(position))
+            {
+                books[position] = updated;
+                return true;
+            }
+            return false;
+        }
+
         public bool RemoveBook(int position)
         {
-            if (position > -1 && position <= bookCount)
+            if (HasIndex(position))
             {
                 while (position < bookCount)
                     books[position++] = books[position];
@@ -38,7 +56,7 @@
 
         public void ShowBooks()
         {
-            if (bookCount != -1)
+            if (!IsEmpty())
             {
                 Console.WriteLine($"\n-------------- Shelf --------------");
                 for (int position = 0; position <= bookCount; position++)
@@ -48,9 +66,7 @@
                 }
             }
             else
-            {
                 Console.WriteLine("The shelf is empty!");
-            }
         }
     }
 }

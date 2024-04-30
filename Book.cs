@@ -1,17 +1,25 @@
-﻿namespace Ex1.BookShelff
+﻿namespace Ex17.BookShelff
 {
     internal class Book
     {
-        public string title;
-        public string author;
-        public DateOnly releaseDate;
-        public string publisher;
-        public string edition;
-        public string isbn;
-        public int pageQuantity;
+        string title;
+        string author;
+        DateOnly releaseDate;
+        string publisher;
+        string edition;
+        string isbn;
+        int pageQuantity;
 
-        public Book() { }
-
+        public Book(string title, string author, DateOnly releaseDate, string publisher, string edition, string isbn, int pageQuantity)
+        {
+            this.title = title;
+            this.author = author;
+            this.releaseDate = releaseDate;
+            this.publisher = publisher;
+            this.edition = edition;
+            this.isbn = isbn;
+            this.pageQuantity = pageQuantity;
+        }
         public void SetTitle(string title) { this.title = title; }
         public void SetAuthor(string author) { this.author = author; }
         public void SetReleaseDate(DateOnly releaseDate) { this.releaseDate = releaseDate; }
